@@ -1,9 +1,14 @@
 package lk.my_finance.my_finance.api;
 
 import lk.my_finance.my_finance.dto.UserDTO;
+import lk.my_finance.my_finance.reqAndresp.response.JwtAuthResponse;
+import lk.my_finance.my_finance.reqAndresp.secure.SignIn;
+import lk.my_finance.my_finance.reqAndresp.secure.SignUp;
+import lk.my_finance.my_finance.service.AuthenticationService;
 import lk.my_finance.my_finance.service.UserService;
 import lk.my_finance.my_finance.util.VarList;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final AuthenticationService authenticationService;
 
     @PostMapping
     public String saveUser(@RequestBody UserDTO userDTO) {
@@ -49,6 +55,8 @@ public class UserController {
         }
 
     }
+
+
     @GetMapping("healthCheck")
     public String getMessage() {
         return "Hello";

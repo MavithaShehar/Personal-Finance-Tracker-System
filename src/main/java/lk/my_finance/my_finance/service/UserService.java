@@ -6,6 +6,8 @@ import lk.my_finance.my_finance.repo.UserRepo;
 import lk.my_finance.my_finance.util.VarList;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,6 +51,12 @@ public class UserService {
             return modelMapper.map(user,UserDTO.class);
         }
         return new UserDTO(0,null,null,null);
+    }
+
+    public UserDetailsService userDetailsService() {
+        return username ->
+                (org.springframework.security.core.userdetails.UserDetails) userRepo.findByEmail(username)
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
 }
