@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,11 @@ public class UserService {
     private final UserRepo userRepo;
     private final ModelMapper modelMapper;
 
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+
     public String saveUser(UserDTO userDTO) {
+
+        userDTO.setUserPassword(encoder.encode(userDTO.getUserPassword()));
 
         if (userRepo.existsById(userDTO.getUserId())){
             return VarList.RSP_DUPLICATED;

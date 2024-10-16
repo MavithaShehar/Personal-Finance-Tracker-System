@@ -26,7 +26,7 @@ public class User implements UserDetails {
     private String userName;
     @Column(name = "password", nullable = false, length = 255)
     private String userPassword;
-    @Column(name = "email", nullable = false, length = 100)
+    @Column(name = "email", nullable = false, length = 100 , unique = true)
     private String email;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Category> categories;
