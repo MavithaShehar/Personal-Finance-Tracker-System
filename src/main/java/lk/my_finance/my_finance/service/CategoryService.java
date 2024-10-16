@@ -83,14 +83,12 @@ public class CategoryService {
     }
 
     public String deleteCategoryById(int categoryId) {
-        // Find the category by ID
+
         Category category = categoryRepo.findById(categoryId)
                 .orElseThrow(() -> new RuntimeException(VarList.RSP_NO_DATA_FOUND));
 
-        // Delete the category
         categoryRepo.delete(category);
 
-        // Return a success response
         return VarList.RSP_SUCCESS;
     }
 
