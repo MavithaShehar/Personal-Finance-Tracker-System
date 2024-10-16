@@ -9,17 +9,5 @@ The **Personal Finance Tracker** is a web-based application designed to help use
 - Categorize transactions into income or expenses.
 - View detailed reports of transaction history.
 - Manage transaction categories.
-- Backend: **Spring Boot**, Frontend: **React.js** + **Tailwind CSS**, Database: **MySQL**.
+- Backend: **Spring Boot**, Database: **MySQL**.
 
-## Setup Instructions
-
-### Prerequisites:
-- **Java 11** or higher
-- **Node.js** (v14 or higher) and npm (v6 or higher)
-- **MySQL** database
-- **Maven** (for backend)
-
-### Backend Setup:
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo/personal-finance-tracker.git
