@@ -41,6 +41,7 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(signIn.getEmail(),signIn.getUserPassword()));
         var userByEmail = userRepo.findByEmail(signIn.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        System.out.println("hi 02 email + "+userByEmail);
         var generatedToken = jwtService.generateToken((UserDetails) userByEmail);
         return JwtAuthResponse.builder().token(generatedToken).build() ;
     }
